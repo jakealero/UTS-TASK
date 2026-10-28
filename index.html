@@ -1,236 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A sample website for testing HTML, CSS, and JavaScript.">
-  <title>Northstar — Sample Website</title>
-  <style>
-    :root {
-      color-scheme: light;
-      --bg: #f5f7fb;
-      --surface: #ffffff;
-      --text: #172033;
-      --muted: #65718a;
-      --accent: #536dfe;
-      --accent-dark: #3e55df;
-      --border: #e4e9f2;
-      --shadow: 0 18px 50px rgba(29, 43, 76, .09);
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.6;
-    }
-    body.dark {
-      color-scheme: dark;
-      --bg: #101522;
-      --surface: #192235;
-      --text: #edf2ff;
-      --muted: #a5b0c7;
-      --accent: #8b9aff;
-      --accent-dark: #7184ff;
-      --border: #2b3850;
-      --shadow: 0 18px 50px rgba(0, 0, 0, .24);
-    }
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(1100px, calc(100% - 40px)); margin: 0 auto; }
-    header {
-      position: sticky; top: 0; z-index: 10;
-      background: color-mix(in srgb, var(--surface) 88%, transparent);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(14px);
-    }
-    .nav { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -.04em; font-size: 1.2rem; }
-    .brand-mark {
-      width: 34px; height: 34px; display: grid; place-items: center;
-      border-radius: 11px; color: white; background: linear-gradient(135deg, #536dfe, #8b5cf6);
-    }
-    .nav-links { display: flex; align-items: center; gap: 26px; color: var(--muted); font-size: .94rem; }
-    .nav-links a:hover { color: var(--accent); }
-    button, .button {
-      border: 0; border-radius: 12px; padding: 11px 17px; cursor: pointer;
-      font: inherit; font-weight: 650; transition: transform .18s, background .18s;
-    }
-    button:hover, .button:hover { transform: translateY(-2px); }
-    .button-primary { background: var(--accent); color: white; box-shadow: 0 8px 20px rgba(83,109,254,.22); }
-    .button-primary:hover { background: var(--accent-dark); }
-    .button-quiet { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
-    .hero { padding: 92px 0 82px; overflow: hidden; }
-    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 60px; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-size: .82rem; font-weight: 750; text-transform: uppercase; letter-spacing: .1em; }
-    .eyebrow::before { content: ""; width: 22px; height: 2px; background: currentColor; }
-    h1 { margin: 18px 0; max-width: 650px; font-size: clamp(2.7rem, 6vw, 4.8rem); line-height: 1.04; letter-spacing: -.065em; }
-    .gradient-text { color: var(--accent); }
-    .hero-copy { max-width: 540px; color: var(--muted); font-size: 1.12rem; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-    .hero-art {
-      min-height: 370px; position: relative; display: grid; place-items: center;
-      border: 1px solid var(--border); border-radius: 30px;
-      background: radial-gradient(circle at 70% 25%, rgba(139,92,246,.22), transparent 35%),
-                  radial-gradient(circle at 25% 75%, rgba(83,109,254,.2), transparent 38%), var(--surface);
-      box-shadow: var(--shadow);
-    }
-    .orbit { width: 245px; height: 245px; border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); border-radius: 50%; display: grid; place-items: center; position: relative; }
-    .orbit::before, .orbit::after { content: ""; position: absolute; inset: 25px; border: 1px dashed color-mix(in srgb, var(--accent) 35%, transparent); border-radius: 50%; }
-    .orbit::after { inset: 55px; border-style: solid; }
-    .planet { width: 92px; height: 92px; border-radius: 28px; transform: rotate(-12deg); background: linear-gradient(135deg, #536dfe, #a78bfa); box-shadow: 0 18px 45px rgba(83,109,254,.38); display: grid; place-items: center; color: white; font-size: 2.2rem; }
-    .spark { position: absolute; width: 13px; height: 13px; border-radius: 50%; background: #a78bfa; box-shadow: 0 0 22px #a78bfa; }
-    .spark.one { top: 42px; right: 72px; } .spark.two { bottom: 65px; left: 62px; width: 8px; height: 8px; }
-    section.content { padding: 70px 0; }
-    .section-heading { text-align: center; max-width: 620px; margin: 0 auto 38px; }
-    .section-heading h2 { margin: 8px 0; font-size: clamp(2rem, 4vw, 2.8rem); letter-spacing: -.045em; }
-    .section-heading p { color: var(--muted); margin: 0; }
-    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .card { padding: 25px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; box-shadow: var(--shadow); }
-    .card-icon { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: color-mix(in srgb, var(--accent) 12%, var(--surface)); color: var(--accent); font-size: 1.3rem; }
-    .card h3 { margin: 18px 0 7px; }
-    .card p { color: var(--muted); margin: 0; }
-    .demo { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; padding: 30px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; box-shadow: var(--shadow); }
-    .demo h2 { margin: 0 0 8px; font-size: 2rem; letter-spacing: -.04em; }
-    .demo p { color: var(--muted); }
-    .counter-panel { padding: 28px; text-align: center; background: var(--bg); border: 1px solid var(--border); border-radius: 18px; }
-    #count { display: block; font-size: 3.5rem; font-weight: 800; letter-spacing: -.06em; }
-    .counter-controls { display: flex; justify-content: center; flex-wrap: wrap; gap: 9px; margin-top: 12px; }
-    footer { margin-top: 60px; padding: 28px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: .9rem; }
-    .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    @media (max-width: 760px) {
-      .nav-links { display: none; }
-      .hero { padding: 62px 0; }
-      .hero-grid, .demo { grid-template-columns: 1fr; gap: 32px; }
-      .hero-art { min-height: 300px; }
-      .cards { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A personal time capsule about uncertainty, freedom, meaning, and becoming.">
+<title>I Am Not Finished Becoming — Understanding the Self</title>
+<style>
+:root{
+ --paper:#f7f6ef;--paper2:#efeee3;--ink:#26362e;--muted:#68766b;
+ --sage:#a9bd9b;--sage-dark:#55745a;--moss:#dce6d4;--clay:#d9a58d;
+ --line:#d9ded2;--white:#fffefa;--serif:Georgia,"Times New Roman",serif;
+ --sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.75}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{width:min(1080px,calc(100% - 44px));margin:auto}
+header{padding:22px 0;border-bottom:1px solid var(--line)}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.brand{font-size:.76rem;font-weight:750;letter-spacing:.16em;text-transform:uppercase}
+.navlinks{display:flex;gap:20px;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
+.navlinks a{text-decoration:none}
+.navlinks a:hover{text-decoration:underline;text-decoration-color:var(--sage-dark);text-underline-offset:5px}
+.hero{padding:100px 0 95px;position:relative;overflow:hidden;background:linear-gradient(120deg,#f7f6ef 0%,#f0f2e8 100%)}
+.hero:after{content:"";position:absolute;width:520px;height:520px;border:1px solid #d9e2d1;border-radius:50%;right:-145px;top:-130px;box-shadow:0 0 0 55px rgba(169,189,155,.09),0 0 0 110px rgba(169,189,155,.06)}
+.hero-inner{position:relative;z-index:1;max-width:800px}
+.eyebrow,.section-tag{font-size:.7rem;letter-spacing:.17em;text-transform:uppercase;font-weight:750;color:var(--sage-dark)}
+h1{font:normal clamp(3.5rem,9vw,7.4rem)/.94 var(--serif);letter-spacing:-.06em;margin:25px 0 25px;max-width:800px}
+h1 em{font-weight:normal;color:var(--sage-dark)}
+.hero p{max-width:640px;color:var(--muted);font-size:1.08rem}
+.hero blockquote{margin:38px 0 0;padding:0 0 0 20px;border-left:3px solid var(--clay);font:italic clamp(1.25rem,2.6vw,1.8rem)/1.5 var(--serif);max-width:650px}
+.hero blockquote small{display:block;margin-top:12px;font: .68rem var(--sans);letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+section{padding:82px 0;border-bottom:1px solid var(--line)}
+.section-head{display:grid;grid-template-columns:70px 1fr;gap:22px;margin-bottom:35px}
+.number{font:italic 2.3rem var(--serif);color:var(--clay)}
+h2{font:normal clamp(2.4rem,5vw,4.2rem)/1.05 var(--serif);letter-spacing:-.04em;margin:8px 0 14px}
+h3{font:normal 1.55rem var(--serif);margin:0 0 9px}
+.lead{max-width:750px;color:var(--muted);margin:0}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.paper-card{padding:26px;background:var(--white);border:1px solid var(--line);border-radius:4px}
+.paper-card p{color:var(--muted);margin:0}
+.soft-quote{margin:28px 0;padding:28px 32px;background:var(--moss);border-radius:4px;font:italic 1.45rem/1.5 var(--serif);color:#38553d}
+.soft-quote small{display:block;margin-top:12px;font: .68rem var(--sans);letter-spacing:.13em;text-transform:uppercase;color:#627565}
+.thoughts{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:25px}
+.thought{background:var(--white);border:1px solid var(--line);overflow:hidden;border-radius:4px}
+.thought img{width:100%;height:205px;object-fit:cover;object-position:center 25%;filter:grayscale(100%);background:#e6e6df}
+.thought-copy{padding:20px}
+.thought-copy .tag{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-dark);font-weight:750}
+.thought-copy h3{margin:7px 0}
+.thought-copy p{color:var(--muted);font-size:.9rem;margin:0}
+.thought-copy a{font-size:.75rem;color:var(--sage-dark)}
+.caption{font-size:.76rem;color:var(--muted);margin:13px 0 0}
+.dimension-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.dimension{padding:22px;background:var(--paper2);border-top:2px solid var(--sage)}
+.dimension .letter{font:italic 1.2rem var(--serif);color:var(--sage-dark)}
+.dimension h3{margin:10px 0 5px;font-size:1.3rem}
+.dimension p{font-size:.9rem;color:var(--muted);margin:0}
+.personal-note{margin-top:22px;padding:24px 27px;background:#f0e7df;border-left:3px solid var(--clay)}
+.personal-note p{margin:0;color:#5d514a}
+.path{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.path-card{background:var(--white);border:1px solid var(--line);padding:27px}
+.path-card p{color:var(--muted);margin:0}
+.path-card .smalltag{font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--sage-dark);font-weight:750}
+.path-card h3{margin:9px 0}
+.care-list{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.care{padding:25px;background:var(--moss);border-radius:4px}
+.care .n{font:italic 1.2rem var(--serif);color:var(--sage-dark)}
+.care h3{margin:8px 0}
+.care p{margin:0;color:#59685b}
+.future{background:var(--white);border:1px solid var(--line);padding:clamp(25px,5vw,55px);max-width:850px}
+.future .date{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sage-dark)}
+.future h3{font-size:2rem;margin:20px 0}
+.future p{font:1.08rem/1.9 var(--serif);color:#455348}
+.future .signature{margin-top:26px;font-style:italic}
+.end{text-align:center;padding:90px 0 100px;background:var(--paper2)}
+.end h2{max-width:760px;margin:14px auto}
+.end p{color:var(--muted)}
+footer{padding:22px 0;color:var(--muted);font-size:.75rem}
+.footerline{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+@media(max-width:760px){
+ .nav{align-items:flex-start;flex-direction:column}.navlinks{gap:13px}
+ .hero{padding:72px 0}.thoughts,.dimension-grid{grid-template-columns:repeat(2,1fr)}
+ .section-head{grid-template-columns:45px 1fr}.grid2,.path,.care-list{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+ .wrap{width:calc(100% - 30px)}section{padding:62px 0}
+ .thoughts,.dimension-grid{grid-template-columns:1fr}
+ .thought img{height:240px}.section-head{grid-template-columns:1fr;gap:4px}
+ .hero:after{right:-330px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{
+ body{background:white;font-size:10.5pt}
+ header{display:none}.hero{padding:35px 0}.hero:after{display:none}
+ section{padding:30px 0;break-inside:avoid}
+ .thought,.paper-card,.path-card,.care,.future{break-inside:avoid}
+ a{text-decoration:none}
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#" aria-label="Northstar home"><span class="brand-mark">✦</span> northstar</a>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#features">Features</a>
-        <a href="#demo">Interactive demo</a>
-        <a href="#about">About</a>
-      </nav>
-      <button class="button-quiet" id="themeToggle" type="button">Toggle theme</button>
-    </div>
-  </header>
+<header>
+ <div class="wrap nav">
+  <div class="brand">A personal time capsule · 2026</div>
+  <nav class="navlinks" aria-label="Page sections">
+   <a href="#unit-one">Understanding</a><a href="#unit-two">Dimensions</a><a href="#unit-three">Becoming</a><a href="#unit-four">Self-care</a><a href="#future">Future self</a>
+  </nav>
+ </div>
+</header>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">A starter project</span>
-          <h1>Build something <span class="gradient-text">worth exploring.</span></h1>
-          <p class="hero-copy">A small, self-contained sample website. It includes responsive layouts, custom styling, navigation, and a little JavaScript to give you something to experiment with.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#features">Explore the page</a>
-            <a class="button button-quiet" href="#demo">Try the demo ↓</a>
-          </div>
-        </div>
-        <div class="hero-art" aria-label="Abstract orbit illustration">
-          <span class="spark one"></span><span class="spark two"></span>
-          <div class="orbit"><div class="planet">✦</div></div>
-        </div>
-      </div>
-    </section>
+<main>
+<section class="hero">
+ <div class="wrap hero-inner">
+  <div class="eyebrow">Understanding the Self · OBE Final Examination</div>
+  <h1>I am not<br>finished <em>becoming.</em></h1>
+  <p>This is a snapshot of who I am at this point in my life: what I believe, what I question, what I am working toward, and what I still do not know. I do not see identity as something already completed. It is something I continue to understand and shape.</p>
+  <blockquote>“The past is to be accepted, the present is to be appreciated, and the future is to be shaped.”<small>A principle I want to remember</small></blockquote>
+ </div>
+</section>
 
-    <section class="content" id="features">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">What's included</span>
-          <h2>A simple foundation</h2>
-          <p>Use this page to test edits to the markup, styles, and behavior.</p>
-        </div>
-        <div class="cards">
-          <article class="card">
-            <div class="card-icon">⌘</div>
-            <h3>Clean structure</h3>
-            <p>Semantic HTML sections, navigation, articles, and a footer make the page easy to understand and modify.</p>
-          </article>
-          <article class="card">
-            <div class="card-icon">◈</div>
-            <h3>Responsive design</h3>
-            <p>The layout adapts to smaller screens using CSS Grid, flexible sizing, and a mobile breakpoint.</p>
-          </article>
-          <article class="card">
-            <div class="card-icon">⚡</div>
-            <h3>Interactive behavior</h3>
-            <p>JavaScript powers the theme switcher and the counter below. No external libraries are required.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+<section id="unit-one">
+ <div class="wrap">
+  <div class="section-head"><div class="number">01</div><div><div class="section-tag">Unit 1 · The self I have come to understand</div><h2>A self shaped by experience,<br>but not fixed by it.</h2><p class="lead">I understand myself through a mixture of reflection, experience, and the ideas I encounter. My identity is influenced by the world around me, but I do not believe that any one influence has to decide who I become.</p></div></div>
+  <div class="grid2">
+   <article class="paper-card"><h3>Philosophical perspective</h3><p>My personal philosophy begins with uncertainty. Human understanding is limited, and the conclusions I hold today may need revision tomorrow. I can still make decisions, but I should not confuse my current understanding with absolute truth.</p></article>
+   <article class="paper-card"><h3>Psychological perspective</h3><p>Understanding myself also means observing my thoughts, emotions, behavior, and the patterns that emerge through experience. I am not only what I say I believe; I am also shaped by how I respond, what I practice, and what I learn about myself over time.</p></article>
+   <article class="paper-card"><h3>Society and culture</h3><p>I do not develop in isolation. Family, community, education, culture, and social expectations influence how I see myself and the world. I can recognize those influences while still deciding which values and priorities I want to carry forward.</p></article>
+   <article class="paper-card"><h3>Freedom and responsibility</h3><p>I value individual autonomy: people should have the freedom to decide what matters to them. But freedom does not remove responsibility. Our choices affect others, and we must be willing to recognize the consequences of our actions.</p></article>
+  </div>
+  <div class="soft-quote">Uncertainty should not prevent us from living. It should remind us that our understanding is never beyond question.<small>My view of knowledge and truth</small></div>
 
-    <section class="content" id="demo">
-      <div class="container">
-        <div class="demo">
-          <div>
-            <span class="eyebrow">JavaScript test</span>
-            <h2>Try the counter</h2>
-            <p>Click the buttons to change the number. You can inspect the event listeners in the script at the bottom of this file.</p>
-          </div>
-          <div class="counter-panel">
-            <span id="count" aria-live="polite">0</span>
-            <div class="counter-controls">
-              <button class="button-quiet" id="decrease" type="button">− Decrease</button>
-              <button class="button-primary" id="increase" type="button">+ Increase</button>
-              <button class="button-quiet" id="reset" type="button">Reset</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <h3 style="margin-top:38px">Ideas I find myself intersecting with</h3>
+  <p class="lead">My philosophy is not a copy of any one school. These are intellectual neighbors: ideas that help describe parts of how I think, even where I disagree or take a different direction.</p>
+  <div class="thoughts">
+   <article class="thought">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Jean-Paul_Sartre_1924.jpg" alt="Archival portrait of Jean-Paul Sartre" loading="lazy">
+    <div class="thought-copy"><div class="tag">Existentialism</div><h3>Jean-Paul Sartre</h3><p>Personal freedom and responsibility: we participate in shaping who we become through our choices.</p><a href="https://commons.wikimedia.org/wiki/File:Jean-Paul_Sartre_1924.jpg" target="_blank" rel="noopener">Image source · Wikimedia Commons</a></div>
+   </article>
+   <article class="thought">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Camus2.jpg" alt="Archival portrait of Albert Camus" loading="lazy">
+    <div class="thought-copy"><div class="tag">Absurdism</div><h3>Albert Camus</h3><p>Life may not provide a guaranteed meaning, yet that does not prevent us from living and appreciating it.</p><a href="https://commons.wikimedia.org/wiki/File:Camus2.jpg" target="_blank" rel="noopener">Image source · Wikimedia Commons</a></div>
+   </article>
+   <article class="thought">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Charles_Sanders_Peirce.jpg" alt="Archival portrait of Charles Sanders Peirce" loading="lazy">
+    <div class="thought-copy"><div class="tag">Pragmatism · Fallibilism</div><h3>Charles S. Peirce</h3><p>Beliefs should remain open to inquiry and correction. Decisions can rely on the best understanding currently available.</p><a href="https://commons.wikimedia.org/wiki/File:Charles_Sanders_Peirce.jpg" target="_blank" rel="noopener">Image source · Wikimedia Commons</a></div>
+   </article>
+  </div>
+  <p class="caption">These portraits are illustrative references to thinkers associated with some of the traditions discussed, not endorsements or claims that my philosophy is identical to theirs. My philosophy also has affinities with nihilism and Stoicism, while retaining its own distinctions.</p>
+  <div class="grid2" style="margin-top:25px">
+   <article class="paper-card"><h3>Meaning is personal</h3><p>Life may not come with one predetermined meaning. I can still find meaning in curiosity, relationships, ambitions, responsibilities, or a quiet life. I do not think everyone must want the same things.</p></article>
+   <article class="paper-card"><h3>Accept, learn, adapt</h3><p>The past cannot be rewritten. I should not expect my former self to have known what I only learned later. I can acknowledge mistakes and their consequences without remaining trapped in regret.</p></article>
+  </div>
+ </div>
+</section>
 
-    <section class="content" id="about">
-      <div class="container section-heading">
-        <span class="eyebrow">About this sample</span>
-        <h2>One file. No dependencies.</h2>
-        <p>Everything is contained in this <code>index.html</code> file, so you can open it directly in a browser or use it as a starting point for a larger project.</p>
-      </div>
-    </section>
-  </main>
+<section id="unit-two">
+ <div class="wrap">
+  <div class="section-head"><div class="number">02</div><div><div class="section-tag">Unit 2 · The many dimensions of me</div><h2>I exist in more than<br>one dimension.</h2><p class="lead">No single role or description can contain an entire person. My different dimensions overlap, influence one another, and sometimes pull me in different directions.</p></div></div>
+  <div class="dimension-grid">
+   <article class="dimension"><div class="letter">A</div><h3>Intellectual self</h3><p>I value curiosity, questioning assumptions, and revising my understanding when I encounter better information.</p></article>
+   <article class="dimension"><div class="letter">B</div><h3>Emotional self</h3><p>I am still learning to recognize my reactions and give myself time to understand them before responding.</p></article>
+   <article class="dimension"><div class="letter">C</div><h3>Physical self</h3><p>My body is part of how I experience life. Its needs and limits deserve attention rather than being ignored.</p></article>
+   <article class="dimension"><div class="letter">D</div><h3>Social self</h3><p>My relationships, community, and culture shape my perspective, while I remain responsible for how I treat other people.</p></article>
+   <article class="dimension"><div class="letter">E</div><h3>Spiritual / existential self</h3><p>I think about uncertainty, mortality, hope, and the freedom to find meaning in the time I have.</p></article>
+   <article class="dimension"><div class="letter">F</div><h3>Digital self</h3><p>The version of me exposed to the internet is still me. Online freedom does not mean absolute freedom; I must practice restraint and think before posting.</p></article>
+  </div>
+  <div class="personal-note"><p><strong>My digital self.</strong> Because it is so easy to publish and spread something online, I should not be too quick to post or share. I believe I need to constrain myself even when a platform gives me the freedom to speak. I know I do this all the time—posting or sharing too quickly—and recognizing that habit is part of understanding myself. What I put online can travel further and last longer than the moment in which I posted it.</p></div>
+ </div>
+</section>
 
-  <footer>
-    <div class="container footer-inner">
-      <span>© <span id="year"></span> Northstar Sample</span>
-      <span>Built with HTML, CSS, and JavaScript.</span>
-    </div>
-  </footer>
+<section id="unit-three">
+ <div class="wrap">
+  <div class="section-head"><div class="number">03</div><div><div class="section-tag">Unit 3 · The self I am building</div><h2>Persistence, direction,<br>and room to change.</h2><p class="lead">I do not have to know the final version of myself. I can work toward something, learn from the process, and revise my direction when I understand more.</p></div></div>
+  <div class="path">
+   <article class="path-card"><div class="smalltag">A strength</div><h3>Persistence</h3><p>I can keep working toward a difficult goal instead of giving up as soon as progress becomes slow. Persistence helps me continue learning and improving, especially when a problem takes time to understand.</p></article>
+   <article class="path-card"><div class="smalltag">A trait to manage</div><h3>Stubbornness</h3><p>My stubbornness can help me stay committed, but it can also make it difficult to change direction. My philosophy reminds me that persistence should not mean refusing new evidence. I want to know when to hold my ground and when to revise my position.</p></article>
+   <article class="path-card"><div class="smalltag">A current goal</div><h3>Online programming work</h3><p>I want to develop my programming skills into practical work opportunities online. This goal gives me a direction to work toward, while remaining open to learning new tools, improving my abilities, and adapting to the opportunities I encounter.</p></article>
+   <article class="path-card"><div class="smalltag">An aspiration</div><h3>Independent, but teachable</h3><p>I want to become someone who can think independently without assuming that I am always right; someone persistent enough to pursue goals, but flexible enough to learn from mistakes and other people.</p></article>
+  </div>
+  <div class="soft-quote">I can be determined without being incapable of changing my mind.<small>A balance I want to practice</small></div>
+ </div>
+</section>
 
-  <script>
-    let count = 0;
-    const countDisplay = document.getElementById("count");
+<section id="unit-four">
+ <div class="wrap">
+  <div class="section-head"><div class="number">04</div><div><div class="section-tag">Unit 4 · The self I need to take care of</div><h2>Sometimes, the best first step<br>is to slow down.</h2><p class="lead">My philosophy already gives me a practical response to stress and uncertainty: do not rush into judgment. Observe first, understand what is happening, and then decide what to do with the information available.</p></div></div>
+  <div class="care-list">
+   <article class="care"><div class="n">01</div><h3>Slow down</h3><p>Give myself a moment instead of reacting immediately. Not every problem needs an instant answer.</p></article>
+   <article class="care"><div class="n">02</div><h3>Observe</h3><p>Separate what I know from what I assume. Identify what is within my control and what remains uncertain.</p></article>
+   <article class="care"><div class="n">03</div><h3>Exercise judgment</h3><p>Use the best information available. I do not need absolute certainty before making a reasonable decision.</p></article>
+   <article class="care"><div class="n">04</div><h3>Accept and adapt</h3><p>Accept what has happened, take responsibility where needed, and let new knowledge guide my next decision.</p></article>
+  </div>
+  <div class="personal-note"><p><strong>My reminder to myself:</strong> Acceptance is not passivity. I cannot change the past or control every outcome, but I can still act, ask for support, and shape what happens next. Taking care of myself also means recognizing when I need rest or help instead of expecting myself to solve everything alone.</p></div>
+ </div>
+</section>
 
-    function updateCounter() {
-      countDisplay.textContent = count;
-    }
+<section id="future">
+ <div class="wrap">
+  <div class="section-head"><div class="number">05</div><div><div class="section-tag">A message to my future self</div><h2>Dear future me,</h2><p class="lead">Written in October 2026. To be read again in October 2031.</p></div></div>
+  <article class="future">
+   <div class="date">A letter across five years</div>
+   <h3>I hope you kept becoming.</h3>
+   <p>I do not know what your life looks like now, or which of the things I currently believe you have kept. I hope you have allowed yourself to change without feeling that you must defend every version of who you used to be.</p>
+   <p>Remember that you were never required to have absolute certainty. You only needed to make the best decisions you could with the knowledge available at the time. If those decisions led somewhere unexpected, accept what happened, take responsibility where necessary, and learn from it.</p>
+   <p>Do not let the pursuit of a future make you forget the life you are already living. Your time is limited. Appreciate the ordinary moments, the people you care about, the things that make you curious, and the freedom to decide what matters to you.</p>
+   <p>If your ambitions have changed, examine why. If you have made mistakes, do not confuse accountability with endless self-punishment. If life has become difficult, remember that accepting reality does not mean surrendering hope.</p>
+   <p>I cannot tell you who to become. That decision belongs to you. I only hope you remain willing to question yourself, revise your understanding, and make room for a better answer.</p>
+   <p>Whatever has happened, remember this: the past is to be accepted, the present is to be appreciated, and the future is to be shaped.</p>
+   <p class="signature">— Me, in 2026</p>
+  </article>
+ </div>
+</section>
 
-    document.getElementById("increase").addEventListener("click", () => {
-      count++;
-      updateCounter();
-    });
-
-    document.getElementById("decrease").addEventListener("click", () => {
-      count--;
-      updateCounter();
-    });
-
-    document.getElementById("reset").addEventListener("click", () => {
-      count = 0;
-      updateCounter();
-    });
-
-    document.getElementById("themeToggle").addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-    });
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+<section class="end">
+ <div class="wrap">
+  <div class="section-tag">A snapshot, not a final answer</div>
+  <h2>I am not finished becoming.</h2>
+  <p>And perhaps I do not need to be.</p>
+ </div>
+</section>
+</main>
+<footer><div class="wrap footerline"><span>UNDERSTANDING THE SELF · PERSONAL TIME CAPSULE</span><span>October 2026 · Revisit October 2031</span></div></footer>
 </body>
 </html>
