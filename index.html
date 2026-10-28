@@ -58,6 +58,13 @@ h3{font:normal 1.55rem var(--serif);margin:0 0 9px}
 .dimension .letter{font:italic 1.2rem var(--serif);color:var(--sage-dark)}
 .dimension h3{margin:10px 0 5px;font-size:1.3rem}
 .dimension p{font-size:.9rem;color:var(--muted);margin:0}
+.belief-intro{margin:42px 0 18px}
+.belief-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.belief{padding:25px;background:var(--white);border:1px solid var(--line);border-top:3px solid var(--clay)}
+.belief .belief-tag{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-dark);font-weight:750}
+.belief h3{margin:9px 0}
+.belief p{font-size:.92rem;color:var(--muted);margin:0 0 12px}
+.belief blockquote{margin:15px 0 0;padding-left:15px;border-left:2px solid var(--clay);font:italic 1.08rem/1.55 var(--serif);color:#455348}
 .personal-note{margin-top:22px;padding:24px 27px;background:#f0e7df;border-left:3px solid var(--clay)}
 .personal-note p{margin:0;color:#5d514a}
 .path{display:grid;grid-template-columns:1fr 1fr;gap:18px}
@@ -82,12 +89,12 @@ footer{padding:22px 0;color:var(--muted);font-size:.75rem}
 .footerline{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
 @media(max-width:760px){
  .nav{align-items:flex-start;flex-direction:column}.navlinks{gap:13px}
- .hero{padding:72px 0}.thoughts,.dimension-grid{grid-template-columns:repeat(2,1fr)}
+ .hero{padding:72px 0}.thoughts,.dimension-grid,.belief-grid{grid-template-columns:repeat(2,1fr)}
  .section-head{grid-template-columns:45px 1fr}.grid2,.path,.care-list{grid-template-columns:1fr}
 }
 @media(max-width:520px){
  .wrap{width:calc(100% - 30px)}section{padding:62px 0}
- .thoughts,.dimension-grid{grid-template-columns:1fr}
+ .thoughts,.dimension-grid,.belief-grid{grid-template-columns:1fr}
  .thought img{height:240px}.section-head{grid-template-columns:1fr;gap:4px}
  .hero:after{right:-330px}
 }
@@ -130,43 +137,91 @@ footer{padding:22px 0;color:var(--muted);font-size:.75rem}
    <article class="paper-card"><h3>Society and culture</h3><p>I do not develop in isolation. Family, community, education, culture, and social expectations influence how I see myself and the world. I can recognize those influences while still deciding which values and priorities I want to carry forward.</p></article>
    <article class="paper-card"><h3>Freedom and responsibility</h3><p>I value individual autonomy: people should have the freedom to decide what matters to them. But freedom does not remove responsibility. Our choices affect others, and we must be willing to recognize the consequences of our actions.</p></article>
   </div>
-  <div class="soft-quote">Uncertainty should not prevent us from living. It should remind us that our understanding is never beyond question.<small>My view of knowledge and truth</small></div>
-
-  <h3 style="margin-top:38px">Ideas I find myself intersecting with</h3>
-  <p class="lead">My philosophy is not a copy of any one school. These are intellectual neighbors: ideas that help describe parts of how I think, even where I disagree or take a different direction.</p>
+  <div class="soft-quote">Uncertainty should not prevent us from living. It should remind us to remain observant, adaptable, and willing to revise what we believe.<small>My approach to knowledge and decision-making</small></div>
+  <div class="section-tag">Ideas that influenced my thinking</div>
   <div class="thoughts">
    <article class="thought">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Jean-Paul_Sartre_1924.jpg" alt="Archival portrait of Jean-Paul Sartre" loading="lazy">
-    <div class="thought-copy"><div class="tag">Existentialism</div><h3>Jean-Paul Sartre</h3><p>Personal freedom and responsibility: we participate in shaping who we become through our choices.</p><a href="https://commons.wikimedia.org/wiki/File:Jean-Paul_Sartre_1924.jpg" target="_blank" rel="noopener">Image source · Wikimedia Commons</a></div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Jean-Paul_Sartre_1924.jpg" alt="Portrait of Jean-Paul Sartre">
+    <div class="thought-copy"><div class="tag">Existentialism</div><h3>Jean-Paul Sartre</h3><p>His emphasis on freedom and responsibility connects with my belief that individuals must take responsibility for the choices through which they shape their lives.</p><a href="https://commons.wikimedia.org/wiki/File:Jean-Paul_Sartre_1924.jpg">Image source</a></div>
    </article>
    <article class="thought">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Camus2.jpg" alt="Archival portrait of Albert Camus" loading="lazy">
-    <div class="thought-copy"><div class="tag">Absurdism</div><h3>Albert Camus</h3><p>Life may not provide a guaranteed meaning, yet that does not prevent us from living and appreciating it.</p><a href="https://commons.wikimedia.org/wiki/File:Camus2.jpg" target="_blank" rel="noopener">Image source · Wikimedia Commons</a></div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Camus2.jpg" alt="Portrait of Albert Camus">
+    <div class="thought-copy"><div class="tag">Absurdism</div><h3>Albert Camus</h3><p>His exploration of an indifferent or uncertain world relates to my questions about meaning, mortality, and how to continue living without guaranteed answers.</p><a href="https://commons.wikimedia.org/wiki/File:Camus2.jpg">Image source</a></div>
    </article>
    <article class="thought">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Charles_Sanders_Peirce.jpg" alt="Archival portrait of Charles Sanders Peirce" loading="lazy">
-    <div class="thought-copy"><div class="tag">Pragmatism · Fallibilism</div><h3>Charles S. Peirce</h3><p>Beliefs should remain open to inquiry and correction. Decisions can rely on the best understanding currently available.</p><a href="https://commons.wikimedia.org/wiki/File:Charles_Sanders_Peirce.jpg" target="_blank" rel="noopener">Image source · Wikimedia Commons</a></div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Charles_Sanders_Peirce.jpg" alt="Portrait of Charles Sanders Peirce">
+    <div class="thought-copy"><div class="tag">Pragmatism · Fallibilism</div><h3>Charles Sanders Peirce</h3><p>The idea that knowledge can be revised through inquiry reflects my belief that I should use the best understanding available while remaining open to correction.</p><a href="https://commons.wikimedia.org/wiki/File:Charles_Sanders_Peirce.jpg">Image source</a></div>
    </article>
   </div>
-  <p class="caption">These portraits are illustrative references to thinkers associated with some of the traditions discussed, not endorsements or claims that my philosophy is identical to theirs. My philosophy also has affinities with nihilism and Stoicism, while retaining its own distinctions.</p>
-  <div class="grid2" style="margin-top:25px">
-   <article class="paper-card"><h3>Meaning is personal</h3><p>Life may not come with one predetermined meaning. I can still find meaning in curiosity, relationships, ambitions, responsibilities, or a quiet life. I do not think everyone must want the same things.</p></article>
-   <article class="paper-card"><h3>Accept, learn, adapt</h3><p>The past cannot be rewritten. I should not expect my former self to have known what I only learned later. I can acknowledge mistakes and their consequences without remaining trapped in regret.</p></article>
-  </div>
+  <p class="caption">These thinkers are points of reference, not exact representatives of my entire philosophy or people whose views I adopt without question. My outlook also has affinities with nihilism and Stoicism, but it is not a strict combination of philosophical schools.</p>
  </div>
 </section>
 
 <section id="unit-two">
  <div class="wrap">
-  <div class="section-head"><div class="number">02</div><div><div class="section-tag">Unit 2 · The many dimensions of me</div><h2>I exist in more than<br>one dimension.</h2><p class="lead">No single role or description can contain an entire person. My different dimensions overlap, influence one another, and sometimes pull me in different directions.</p></div></div>
+  <div class="section-head"><div class="number">02</div><div><div class="section-tag">Unit 2 · The different dimensions of my self</div><h2>More than one way<br>to understand a person.</h2><p class="lead">The self is not limited to one dimension. My identity is shaped by how I think, feel, act, relate to others, understand existence, and present myself in the world.</p></div></div>
   <div class="dimension-grid">
-   <article class="dimension"><div class="letter">A</div><h3>Intellectual self</h3><p>I value curiosity, questioning assumptions, and revising my understanding when I encounter better information.</p></article>
-   <article class="dimension"><div class="letter">B</div><h3>Emotional self</h3><p>I am still learning to recognize my reactions and give myself time to understand them before responding.</p></article>
+   <article class="dimension"><div class="letter">A</div><h3>Intellectual self</h3><p>I value learning, questioning, and revising my understanding. I do not expect to know everything, but I want to remain curious and willing to examine new ideas.</p></article>
+   <article class="dimension"><div class="letter">B</div><h3>Emotional self</h3><p>My emotions are part of how I experience and respond to life. Understanding them means recognizing what I feel without allowing every immediate reaction to determine what I do.</p></article>
    <article class="dimension"><div class="letter">C</div><h3>Physical self</h3><p>My body is part of how I experience life. Its needs and limits deserve attention rather than being ignored.</p></article>
    <article class="dimension"><div class="letter">D</div><h3>Social self</h3><p>My relationships, community, and culture shape my perspective, while I remain responsible for how I treat other people.</p></article>
-   <article class="dimension"><div class="letter">E</div><h3>Spiritual / existential self</h3><p>I think about uncertainty, mortality, hope, and the freedom to find meaning in the time I have.</p></article>
+   <article class="dimension"><div class="letter">E</div><h3>Spiritual / existential self</h3><p>I reflect on existence, uncertainty, mortality, hope, and the freedom to find meaning in the time I have. These questions do not always have final answers.</p></article>
    <article class="dimension"><div class="letter">F</div><h3>Digital self</h3><p>The version of me exposed to the internet is still me. Online freedom does not mean absolute freedom; I must practice restraint and think before posting.</p></article>
+   <article class="dimension"><div class="letter">G</div><h3>Philosophical self</h3><p>This is the set of principles through which I examine knowledge, meaning, freedom, responsibility, and how I should live. I do not follow one school as a complete doctrine; I keep my conclusions open to revision.</p></article>
   </div>
+
+  <div class="belief-intro">
+ <div class="section-tag">My philosophical and existential outlook</div>
+ <h3 style="font-size:1.9rem;margin:8px 0">Three ideas that shape how I understand existence.</h3>
+ <p class="lead">These beliefs are part of my current understanding of the world. They are personal interpretations rather than universal claims, and they remain open to examination as I gain experience and new information.</p>
+</div>
+<div class="belief-grid">
+ <article class="belief">
+  <div class="belief-tag">God · Uncertainty · Hope</div>
+  <h3>God as the personification of uncertainty</h3>
+  <p>In my philosophy, God personifies uncertainty. This is not necessarily an omnipotent force that is always correct, nor is it a reliable explanation for events. It represents the outcomes I cannot predict, the possibilities I cannot fully understand, and the future beyond my control. It is a personal way of expressing the unknown, not a definition I expect others to accept.</p>
+  <p>I fear God because I recognize the power of uncertainty, but I also adore God because I am curious about what uncertainty might bring. When an uncertain outcome becomes reality, the uncertainty has been resolved and the personification is no longer needed.</p>
+  <blockquote>“God does not decide by words, he acts. And once he acts, his personification disappears. God has left.”</blockquote>
+  <p>For me, this idea also leaves room for hope. I can hope that an uncertain outcome will be as humane as possible—for example, that it will cost the least life—without claiming that I know what will happen or that I can control it. If an unfortunate outcome occurs, I should accept reality without surrendering the possibility of hoping and working for a better future.</p>
+ </article>
+ <article class="belief">
+  <div class="belief-tag">Life · Mortality · Appreciation</div>
+  <h3>Life is precious because it is finite</h3>
+  <p>Life is precious partly because it is finite. The acceptance of death—and perhaps the love and respect for mortality itself—reminds me that my time and opportunities are limited. This awareness encourages me to appreciate the present and experience life while I still can. Existence is not guaranteed, so it should not be taken for granted.</p>
+  <p>This does not mean that death should be celebrated, that I should abandon ambitions, or that I should pursue only immediate gratification. I can dedicate years to a difficult pursuit and still appreciate the life I am living along the way. Death need not be celebrated for life to be celebrated; its inevitability gives greater significance to the time I have.</p>
+ </article>
+ <article class="belief">
+  <div class="belief-tag">Love · Subjectivity · Relationships</div>
+  <h3>Love has no single universal form</h3>
+  <p>Love is complicated and cannot necessarily be reduced to one universal definition. It can be selfish, but selfishness does not automatically make it bad. I may love someone because their presence gives my life meaning, because I desire their companionship, or simply because I appreciate them as a person. Love can contain attachment, appreciation, admiration, desire, and personal benefit at the same time.</p>
+  <p>Its nature may differ depending on the people involved and the relationship they share. I do not think every form of love must be forced into an ideal of complete selflessness, nor do I need to redefine every form of it. I would rather appreciate love in its different forms and recognize that its meaning is not necessarily universal.</p>
+ </article>
+</div>
+<div class="personal-note">
+ <p><strong>What these ideas contribute to my identity.</strong> Together, these beliefs shape how I relate to uncertainty, time, and other people. The idea of God reminds me that I cannot know or control every outcome, but I can still hope. Mortality reminds me to value the present without giving up on the future. My understanding of love reminds me that relationships are personal and varied rather than governed by one ideal definition. These ideas do not provide final answers; they are part of the perspective through which I currently understand myself and the world.</p>
+</div>
+  <div class="belief-grid">
+   <article class="belief">
+    <div class="belief-tag">God · Uncertainty</div>
+    <h3>God as the personification of the unknown</h3>
+    <p>In my philosophy, God personifies uncertainty: the outcomes I cannot predict, the possibilities I cannot fully understand, and the future beyond my control. This is a personal philosophical interpretation, not an attempt to impose a definition of God on others or to use God as a ready-made explanation for events.</p>
+    <p>There is both fear and admiration in this idea. I fear uncertainty because of its power, but I also admire it because of the possibilities it holds. When an uncertain outcome becomes reality, the personification has served its purpose and disappears.</p>
+    <blockquote>“God does not decide by words, he acts. And once he acts, his personification disappears. God has left.”</blockquote>
+   </article>
+   <article class="belief">
+    <div class="belief-tag">Life · Mortality</div>
+    <h3>Life is precious because it is finite</h3>
+    <p>My awareness of mortality makes life more precious. Death reminds me that my time and opportunities are limited, and that existence should not be taken for granted. This does not mean celebrating death, abandoning ambition, or living only for immediate pleasure.</p>
+    <p>I can work toward a distant goal and still appreciate the life I am living now. The future matters, but it should not turn the present into nothing more than a waiting room. To respect mortality is to recognize the value of the time I have.</p>
+   </article>
+   <article class="belief">
+    <div class="belief-tag">Love · Subjectivity</div>
+    <h3>Love has no single universal form</h3>
+    <p>I do not think love can always be reduced to complete selflessness. It may involve attachment, appreciation, admiration, desire, companionship, and personal benefit. We may love someone because their presence gives our lives meaning, or simply because we appreciate them as a person.</p>
+    <p>Love can differ between people and relationships. Its complexity does not require me to force every form of it into one ideal definition. I would rather recognize and appreciate its different forms.</p>
+   </article>
+  </div>
+
   <div class="personal-note"><p><strong>My digital self.</strong> Because it is so easy to publish and spread something online, I should not be too quick to post or share. I believe I need to constrain myself even when a platform gives me the freedom to speak. I know I do this all the time—posting or sharing too quickly—and recognizing that habit is part of understanding myself. What I put online can travel further and last longer than the moment in which I posted it.</p></div>
  </div>
 </section>
@@ -222,6 +277,3 @@ footer{padding:22px 0;color:var(--muted);font-size:.75rem}
  </div>
 </section>
 </main>
-<footer><div class="wrap footerline"><span>UNDERSTANDING THE SELF · PERSONAL TIME CAPSULE</span><span>October 2026 · Revisit October 2031</span></div></footer>
-</body>
-</html>
